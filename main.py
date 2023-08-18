@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-
 st.set_page_config(
     page_title="CCC",
     page_icon="🏗️",
@@ -11,13 +10,11 @@ st.set_page_config(
 # Excel file name
 excel_file_name = "./bauteil-database.xlsx"
 
-
 # Load excel file
 @st.cache_resource
 def load_excel(excel_file_name):
     excel_file = pd.ExcelFile(excel_file_name)
     return excel_file
-
 
 # Load Bauteil data
 def load_bauteil_data(excel_file):
