@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from PIL import Image
 
 st.set_page_config(
     page_title="CCC",
@@ -165,10 +166,10 @@ def get_properties_of_bauteil_list(bauteil_list):
 excel_file = load_excel(excel_file_name)
 bauteilName, bauteilType, bauteilMaterial = load_bauteil_data(excel_file)
 
-st.header('CCC - Circular Component Creator')
+image = Image.open('./ccc-logo-colored.png')
+st.image(image, width=200)
 
-# image = Image.open('./logo2.png')
-# st.image(image, width=400)
+st.header('Circular Component Creator')
 
 st.write(
     'We develop tools based on the latest Eurocode and DIN norms to help us deliver the most '
@@ -177,7 +178,7 @@ st.write(
 
 
 
-st.header('1 - Filter components library')
+st.header('1 - Filter the components')
 
 with st.expander("Filter", expanded=True):
     st.write('We have a selection of relevant components so you can compare them with your creation. You can use the options below to filter for the components you are interested in.')
@@ -200,7 +201,7 @@ with st.expander("Filter", expanded=True):
         cb_calciumSilicateBrick = st.checkbox("Calcium silicate brick", value=True)
         cb_concrete = st.checkbox("Concrete", value=True)
 
-st.header('2 - Select your favorite components')
+st.header('2 - Select your favorites')
 
 # Use both bauteilType and bauteilMaterial to filter the bauteilName list using the checkboxes above
 bauteilList = []
@@ -240,7 +241,7 @@ edited_df = st.data_editor(
 
 st.divider()
 
-st.header('3 - Create your own component')
+st.header('3 - Create your own')
 st.write('You can use the options below to configure the component.')
 materialThickness = {}
 materialList = load_katalog_data(excel_file, "TRD-tr-HBV-GKL45-si")
@@ -276,12 +277,13 @@ for i in range(len(materialList)):
             )
 with svg_col:
     st.image(
-        "<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' style='fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)' /></svg>",
-        width=100,
+        # "<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='200' height='200' style='fill:rgb(245,92,175);stroke-width:3;stroke:rgb(0,0,0)' /></svg>",
+        "<svg id='mySvg' width='400' height='400'><polygon points='87.4,56.30000000000001 287.4,156.3 290,155 90,55' fill='#D6A371' stroke='black' stroke-width='1'></polygon><polygon points='287.4,356.3 290,355 290,155 287.4,156.3' fill='#614A33' stroke='black' stroke-width='1'></polygon><polygon points='87.4,256.3 287.4,356.3 287.4,156.3 87.4,56.30000000000001' fill='#E8E8E8' stroke='black' stroke-width='1'></polygon><polygon points='90,55 290,155 310,145 110,45' fill='#D6A371' stroke='black' stroke-width='1'></polygon><polygon points='290,355 310,345 310,145 290,155' fill='#614A33' stroke='black' stroke-width='1'></polygon><polygon points='90,55 290,155 310,145 110,45' fill='#D6A371' stroke='black' stroke-width='1'></polygon><polygon points='290,355 310,345 310,145 290,155' fill='#614A33' stroke='black' stroke-width='1'></polygon><polygon points='110,45 310,145 312.6,143.70000000000002 112.60000000000001,43.70000000000002' fill='#D6A371' stroke='black' stroke-width='1'></polygon><polygon points='310,345 312.6,343.70000000000005 312.6,143.70000000000002 310,145' fill='#614A33' stroke='black' stroke-width='1'></polygon></svg>",
+        width=200
     )
 
 st.divider()
-st.header('4 - Components comparison')
+st.header('4 - Compare!')
 st.write(
     'Here we compare the selected components from the library with your creation.'
 )
@@ -296,7 +298,7 @@ selected_bauteilList = edited_df[edited_df["Selected"]]["Type"].tolist()
 # Graphs
 graph1_col, graph2_col = st.columns(2, gap="large")
 with graph1_col:
-    st.subheader('Some data')
+    st.subheader('Global warming potential [kg CO₂eq/m²]')
     st.bar_chart(
         # Enter your data below! Usually this is not a dict, but a Pandas Dataframe.,
         data={'time': [0, 1, 2, 3, 4, 5, 6], 'stock_value': [100, 200, 150, 300, 450, 500, 600]},
@@ -306,7 +308,7 @@ with graph1_col:
     )
 
 with graph2_col:
-    st.subheader('More data 2')
+    st.subheader('Embodied energy [MJ/m²]')
     st.line_chart(
         # Enter your data below! Usually this is not a dict, but a Pandas Dataframe.,
         data={'time': [0, 1, 2, 3, 4, 5, 6], 'stock_value': [100, 200, 150, 300, 450, 500, 600]},
