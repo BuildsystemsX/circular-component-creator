@@ -253,7 +253,7 @@ with selector_col:
 with slider_col:
     st.subheader('Thickness')
 with svg_col:
-    st.subheader('Visualisation')
+    st.subheader('Visualization')
 
 # For loop through materialList
 # get index of for loop
