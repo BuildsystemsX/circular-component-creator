@@ -178,7 +178,7 @@ st.write(
 
 
 
-st.header('1 - Filter the components')
+st.header('1 - Filter components')
 
 with st.expander("Filter", expanded=True):
     st.write('We have a selection of relevant components so you can compare them with your creation. You can use the options below to filter for the components you are interested in.')
