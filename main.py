@@ -290,13 +290,16 @@ st.header('4 - Compare!')
 st.write(
     'Here we compare the selected components from the library with your creation.'
 )
-# st.subheader('Your favorite components')
-# get the edited_df with only the selected rows and without the selected column
-selected_bauteil = edited_df[edited_df["Selected"]]
-st.dataframe(selected_bauteil.drop(columns=["Selected"]), use_container_width=True, hide_index=True)
+if df_data.shape[0] > 0:
+    # st.subheader('Your favorite components')
+    # get the edited_df with only the selected rows and without the selected column
+    selected_bauteil = edited_df[edited_df["Selected"]]
+    st.dataframe(selected_bauteil.drop(columns=["Selected"]), use_container_width=True, hide_index=True)
 
-# only get elements from data_df where selected is true
-selected_bauteilList = edited_df[edited_df["Selected"]]["Type"].tolist()
+    # only get elements from data_df where selected is true
+    selected_bauteilList = edited_df[edited_df["Selected"]]["Type"].tolist()
+else:
+    st.write("No components selected")
 
 # Graphs
 graph1_col, graph2_col = st.columns(2, gap="large")
