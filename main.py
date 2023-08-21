@@ -226,18 +226,21 @@ column_names = df_data.columns.tolist()
 df_data["Selected"] = [False] * len(df_data)
 df_data = df_data[["Selected"] + column_names]
 
-edited_df = st.data_editor(
-    df_data,
-    column_config={
-        "Selected": st.column_config.CheckboxColumn(
-            "Select",
-            help="Select your favorite components",
-        )
-    },
-    use_container_width=True,
-    disabled=column_names,
-    hide_index=True
-)
+if df_data.shape[0] > 0:
+    edited_df = st.data_editor(
+        df_data,
+        column_config={
+            "Selected": st.column_config.CheckboxColumn(
+                "Select",
+                help="Select your favorite components",
+            )
+        },
+        use_container_width=True,
+        disabled=column_names,
+        hide_index=True
+    )
+else:
+    st.write("No components found")
 
 st.divider()
 
