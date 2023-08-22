@@ -13,7 +13,7 @@ In this first version, it contains a building component creator with the followi
 
 The web app has been developed with Streamlit, a Python framework.
 <details>
-  <summary>Steps to access Streamlit on Windows</summary>
+  <summary>Steps to access Streamlit on Windows (expand to see)</summary>
   
   * Install Git <kbd>https://git-scm.com/download/win</kbd>
   * Install Python <kbd>https://www.python.org/downloads/</kbd>
